@@ -37,7 +37,7 @@ HOST,doh-de.blahdns.com,DNS
 HOST,doh-fi.blahdns.com,DNS
 HOST,doh-jp.blahdns.com,DNS
 HOST,doh.42l.fr,DNS
-#HOST,doh.dns.apple.com,DNS
+HOST,doh.dns.apple.com,DNS
 HOST,doh.armadillodns.net,DNS
 HOST,doh.centraleu.pi-dns.com,DNS
 HOST,doh.cleanbrowsing.org,DNS
