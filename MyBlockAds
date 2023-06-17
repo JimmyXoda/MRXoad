@@ -1,4 +1,4 @@
-hostname = acs.m.taobao.com, gw.alicdn.com, heic.alicdn.com,app-gw.csdn.net,api.douban.com,*ccb.com,links.jianshu.com, www.jianshu.com,api.m.jd.com,ms.jr.jd.com,img*.360buyimg.com,flowplus.meituan.net, img.meituan.net, p*.meituan.net,s3plus.meituan.net,gw.alicdn.com, acs.m.taobao.com,*.amemv.com,*.snssdk.com,m.client.10010.com，app.poizon.com,ssl.kohsocialapp.qq.com,mp.weixin.qq.com
+hostname = acs.m.taobao.com, gw.alicdn.com, heic.alicdn.com,app-gw.csdn.net,api.douban.com,*ccb.com,links.jianshu.com, www.jianshu.com,api.m.jd.com,ms.jr.jd.com,img*.360buyimg.com,flowplus.meituan.net, img.meituan.net, p*.meituan.net,s3plus.meituan.net,gw.alicdn.com, acs.m.taobao.com,*.amemv.com,*.snssdk.com,m.client.10010.com，app.poizon.com,ssl.kohsocialapp.qq.com,mp.weixin.qq.com,business.msstatic.com
 
 # 阿里巴巴
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv url reject
@@ -78,3 +78,7 @@ hostname = acs.m.taobao.com, gw.alicdn.com, heic.alicdn.com,app-gw.csdn.net,api.
 ^https?:\/\/((25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\/music\/common\/upload\/t_splash_info\/ url reject
 # > Tencent WeChat
 # ^https?:\/\/mp\.weixin\.qq\.com\/mp\/(ad_|advertisement) url reject
+
+# huya
+^https?:\/\/business\.msstatic\.com\/advertiser\/ url reject-img
+
