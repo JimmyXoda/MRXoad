@@ -1,4 +1,4 @@
-hostname = acs.m.taobao.com, gw.alicdn.com, heic.alicdn.com,app-gw.csdn.net,api.douban.com,*ccb.com,links.jianshu.com, www.jianshu.com,api.m.jd.com,ms.jr.jd.com,img*.360buyimg.com,flowplus.meituan.net, img.meituan.net, p*.meituan.net,s3plus.meituan.net,gw.alicdn.com, acs.m.taobao.com,*.amemv.com,*.snssdk.com,m.client.10010.com，app.poizon.com,ssl.kohsocialapp.qq.com,mp.weixin.qq.com,business.msstatic.com
+hostname = acs.m.taobao.com, gw.alicdn.com, heic.alicdn.com,app-gw.csdn.net,api.douban.com,*ccb.com,links.jianshu.com, www.jianshu.com,api.m.jd.com,ms.jr.jd.com,img*.360buyimg.com,flowplus.meituan.net, img.meituan.net, p*.meituan.net,s3plus.meituan.net,gw.alicdn.com, acs.m.taobao.com,*.amemv.com,*.snssdk.com,m.client.10010.com，app.poizon.com,ssl.kohsocialapp.qq.com,mp.weixin.qq.com,business.msstatic.com, as.xiaojukeji.com, pt-starimg.didistatic.com, security.xiaojukeji.com, guard.sec.xiaojukeji.com, conf.diditaxi.com.cn, api.udache.com, res.xiaojukeji.com, shop-gw.chengxinyouxuan.com, img-ys011.didistatic.com,api.pinduoduo.com
 
 # 阿里巴巴
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv url reject
@@ -82,3 +82,26 @@ hostname = acs.m.taobao.com, gw.alicdn.com, heic.alicdn.com,app-gw.csdn.net,api.
 # huya
 ^https?:\/\/business\.msstatic\.com\/advertiser\/ url reject-img
 
+# 滴滴出行 去广告
+//01 安全提示横幅
+^https:\/\/guard\.sec\.xiaojukeji\.com\/api\/guard\/psg\/v2\/getShieldStatus url reject
+//02 底部打车&代价推荐
+^https:\/\/conf\.diditaxi\.com\.cn\/one url reject
+//03 福利专区-金融服务-公交-骑车-滴滴乐园
+^https:\/\/conf\.diditaxi\.com\.cn\/nav\/widget url reject
+//04 接送机-优惠商城
+^https:\/\/api\.udache\.com\/gulfstream url reject
+//05 主页 领任务
+^https:\/\/conf\.diditaxi\.com\.cn\/api\/(component|fusion|dynamicmodule|usercenter) url reject
+^https:\/\/conf\.diditaxi\.com\.cn\/dynamic url reject
+//06 主页 非主流式悬浮挂件
+^https:\/\/res\.xiaojukeji\.com\/resapi\/activity\/mget url reject
+//07 商城
+^https:\/\/shop-gw\.chengxinyouxuan\.com\/(route|indexConfig|apolloConfig|getShopTuanInfos) url reject
+//08 开屏广告
+^https:\/\/img-ys011\.didistatic\.com\/static url reject
+//09 骑行
+^https:\/\/pt-starimg\.didistatic\.com\/static url reject
+
+# 拼多多 去开屏
+^https?:\/\/api\.(pinduoduo|yangkeduo)\.com\/api\/cappuccino\/splash url reject
