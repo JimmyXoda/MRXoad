@@ -1,4 +1,4 @@
-hostname = acs.m.taobao.com, gw.alicdn.com, heic.alicdn.com,app-gw.csdn.net,api.douban.com,*ccb.com,links.jianshu.com, www.jianshu.com,api.m.jd.com,ms.jr.jd.com,img*.360buyimg.com,flowplus.meituan.net, img.meituan.net, p*.meituan.net,s3plus.meituan.net,gw.alicdn.com, acs.m.taobao.com,*.amemv.com,*.snssdk.com,m.client.10010.com，app.poizon.com,ssl.kohsocialapp.qq.com,mp.weixin.qq.com,business.msstatic.com, as.xiaojukeji.com, pt-starimg.didistatic.com, security.xiaojukeji.com, guard.sec.xiaojukeji.com, conf.diditaxi.com.cn, api.udache.com, res.xiaojukeji.com, shop-gw.chengxinyouxuan.com, img-ys011.didistatic.com,api.pinduoduo.com,api.yangkeduo.com,mi.gdt.qq.com,mbs.boc.cn,api.aliyundrive.com,menber.aliyundrive.com
+hostname = acs.m.taobao.com, gw.alicdn.com, heic.alicdn.com,app-gw.csdn.net,api.douban.com,*ccb.com,links.jianshu.com, www.jianshu.com,api.m.jd.com,ms.jr.jd.com,img*.360buyimg.com,flowplus.meituan.net, img.meituan.net, p*.meituan.net,s3plus.meituan.net,gw.alicdn.com, acs.m.taobao.com,*.amemv.com,*.snssdk.com,m.client.10010.com，app.poizon.com,ssl.kohsocialapp.qq.com,mp.weixin.qq.com,business.msstatic.com, as.xiaojukeji.com, pt-starimg.didistatic.com, security.xiaojukeji.com, guard.sec.xiaojukeji.com, conf.diditaxi.com.cn, api.udache.com, res.xiaojukeji.com, shop-gw.chengxinyouxuan.com, img-ys011.didistatic.com,api.pinduoduo.com,api.yangkeduo.com,mi.gdt.qq.com,mbs.boc.cn,api.aliyundrive.com,menber.aliyundrive.com,patatp.com
 
 # 阿里巴巴
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv url reject
@@ -124,3 +124,17 @@ hostname = acs.m.taobao.com, gw.alicdn.com, heic.alicdn.com,app-gw.csdn.net,api.
 ^http:\/\/video\.dispatch\.tc\.qq\.com\/.+\.mp4 url reject
 ^http:\/\/.+\/vmind\.qqvideo\.tc\.qq\.com\/.+\.mp4 url reject
 ^http:\/\/wa\.gtimg\.com\/adxcdn\/.+\.jpg url reject
+
+reject
+
+#  抖音
+^https:\/\/.+.pstatp.com\/img\/ad url reject
+^https:\/\/.+.snssdk.com\/api\/ad\/ url reject
+#^https?:\/\/aweme\.snssdk\.com\/aweme\/v[12]\/((|follow\/|nearby\/)feed|aweme\/post|hot\/search\/video\/list|mix\/aweme|aweme\/detail)\/\? url script-response-body https://raw.githubusercontent.com/litieyin/AD_VIP/main/Script/douyin.js
+^https:\/\/aweme.snssdk.com\/aweme\/v1\/aweme\/stats\/ url reject
+^https:\/\/aweme.snssdk.com\/aweme\/v1\/device\/update\/ url reject
+^https:\/\/aweme.snssdk.com\/aweme\/v1\/screen\/ad\/ url reject
+^https:\/\/aweme.snssdk.com\/service\/1\/app_logout\/ url reject
+^https:\/\/aweme.snssdk.com\/service\/2\/app_log url reject
+^https:\/\/frontier.snssdk.com\/ url reject
+^https:\/\/sf\w-ttcdn-tos.pstatp.com\/obj\/web.business.image url reject
