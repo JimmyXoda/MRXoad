@@ -130,3 +130,5 @@ reject
 ^https:\/\/aweme.snssdk.com\/service\/2\/app_log url reject
 ^https:\/\/frontier.snssdk.com\/ url reject
 ^https:\/\/sf\w-ttcdn-tos.pstatp.com\/obj\/web.business.image url reject
+^https://[\s\S]*\/aweme/v1/(feed|aweme/post|follow/feed)/ url script-response-body https://Choler.github.io/Surge/Script/Aweme.js
+^https://aweme-eagle(.*)\.snssdk\.com/aweme/v2/ url 302 https://aweme-eagle$1.snssdk.com/aweme/v1/
