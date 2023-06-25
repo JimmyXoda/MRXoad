@@ -2,8 +2,6 @@
 
 hostname=api.gotokeep.com, kad.gotokeep.com
 
-# > vip解锁
-^https:\/\/api\.gotokeep\.com url script-response-body https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/keep.js
 # > 屏蔽部分启动弹窗
 ^https?:\/\/api\.gotokeep\.com\/kprime\/v\d\/popups\/primeGuide url reject
 # > 屏蔽开屏广告请求
