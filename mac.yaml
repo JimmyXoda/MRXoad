@@ -1,0 +1,180 @@
+unified-delay: true
+geodata-mode: false
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 24
+tcp-concurrent: true
+find-process-mode: strict
+global-client-fingerprint: chrome
+
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: true
+udp: true
+
+# external-controller: 0.0.0.0:9090
+# external-ui: ui
+# external-ui-url: 'https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip'
+
+geox-url:
+  mmdb: 'https://geodata.kelee.one/Country-Masaiki.mmdb'
+  asn: 'https://geodata.kelee.one/GeoLite2-ASN-P3TERX.mmdb'
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - +.v2ex.com
+  skip-domain:
+    - Mijia Cloud
+
+tun:
+  enable: true
+  stack: system
+  dns-hijack:
+    - any:53
+  auto-route: true
+  auto-detect-interface: true
+
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 28.0.0.1/8
+  fake-ip-filter:
+    - "*"
+    - +.lan
+  default-nameserver:
+    - 223.5.5.5
+    - 223.6.6.6
+  nameserver:
+    - https://223.5.5.5/dns-query#h3=true
+    - https://223.6.6.6/dns-query#h3=true
+
+NodeParam: &NodeParam {type: http, interval: 3600, health-check: {enable: true, url: 'http://www.google.com/blank.html', interval: 6}}
+proxies:
+  - name: YE-VLESS
+    server: z.kill.works
+    port: 443
+    client-fingerprint: chrome
+    type: vless
+    uuid: d7573e6f-3b32-4ebd-a1dc-06dc6371ebc4
+    tls: true
+    tfo: false
+    flow: xtls-rprx-vision
+    skip-cert-verify: false
+    servername: z.kill.works
+    network: tcp
+    dialer-proxy: ????HK
+
+proxy-providers:
+  BitzNet:
+    url: 'https://let.bnsubservdom.com/api/v1/client/subscribe?token=17093d2298c04fef937ab1383d56de18'
+    <<: *NodeParam
+    path: './proxy_providers/BitzNet-Neo.yaml'
+    override:
+      additional-prefix: "[BitzNet] "
+
+FilterHK: &FilterHK '^(?=.*((?i)????|香港|((HK|Hong)(\d+)?)))(?!.*((?i)回国|校园|游戏|??|((GAME)))).*$'
+FilterTW: &FilterTW '^(?=.*((?i)????|台湾|((TW|Tai|Taiwan)(\d+)?)))(?!.*((?i)回国|校园|游戏|??|((GAME)))).*$'
+FilterJP: &FilterJP '^(?=.*((?i)????|日本|川日|东京|大阪|泉日|埼玉|((JP|Japan)(\d+)?)))(?!.*((?i)回国|校园|游戏|??|((GAME)))).*$'
+FilterSG: &FilterSG '^(?=.*((?i)????|新加坡|狮|((SG|Singapore)(\d+)?)))(?!.*((?i)回国|校园|游戏|??|((GAME)))).*$'
+FilterUS: &FilterUS '^(?=.*((?i)????|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|((US|United States)(\d+)?)))(?!.*((?i)回国|校园|游戏|??|((GAME)))).*$'
+FilterGame: &FilterGame '^(?=.*((?i)游戏|??|((GAME)(\d+)?)))(?!.*((?i)回国|校园)).*$'
+FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|((USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)(\d+)?|(\d{4}-\d{2}-\d{2}|\dG)))).*$'
+
+RuleProviders: &RuleProviders {type: http, behavior: classical, interval: 3600, format: yaml, proxy: DIRECT}
+
+proxy-groups:
+  - {name: MAIN, type: select, proxies: [DIRECT, YE-VLESS, ????HK, ?TW, ????JP, ????SG, ????US, ?SP]}
+  - {name: AI, type: select, proxies: [YE-VLESS, ????HK, ?TW, ????JP, ????SG, ????US, ?SP]}
+  - {name: Microsoft, type: select, proxies: [DIRECT, YE-VLESS, ????HK, ?TW, ????JP, ????SG, ????US, ?SP]}
+  - {name: GAME, type: select, include-all-providers: true, filter: *FilterGame, proxies: [DIRECT, MAIN, YE-VLESS, ????HK, ?TW, ????JP, ????SG, ????US, ?SP]}
+  - {name: GROUND, type: select, proxies: [MAIN, YE-VLESS, ????HK, ?TW, ????JP, ????SG, ????US, ?SP, DIRECT]}
+  - {name: ????HK, type: select, include-all-providers: true, filter: *FilterHK}
+  - {name: ?TW, type: select, include-all-providers: true, filter: *FilterTW}
+  - {name: ????JP, type: select, include-all-providers: true, filter: *FilterJP}
+  - {name: ????SG, type: select, include-all-providers: true, filter: *FilterSG}
+  - {name: ????US, type: select, include-all-providers: true, filter: *FilterUS}
+  - {name: ?SP, type: select, include-all-providers: true, filter: *FilterAll}
+
+rule-providers:
+  LAN:
+    <<: *RuleProviders
+    path: './rules/Lan.yaml'
+    url: 'https://kelee.one/Tool/Clash/Rule/LAN_SPLITTER.yaml'
+
+  Direct:
+    <<: *RuleProviders
+    path: './rules/Direct.yaml'
+    url: 'https://kelee.one/Tool/Clash/Rule/Direct.yaml'
+
+  Proxy:
+    <<: *RuleProviders
+    path: './rules/Proxy.yaml'
+    url: 'https://kelee.one/Tool/Clash/Rule/Proxy.yaml'
+
+  ChinaDownloadCDN:
+    <<: *RuleProviders
+    path: './rules/ChinaDownloadCDN.yaml'
+    url: 'https://kelee.one/Tool/Clash/Rule/ChinaDownloadCDN.yaml'
+
+  InternationalDownloadCDN:
+    <<: *RuleProviders
+    path: './rules/InternationalDownloadCDN.yaml'
+    url: 'https://kelee.one/Tool/Clash/Rule/InternationalDownloadCDN.yaml'
+
+  AI:
+    <<: *RuleProviders
+    path: './rules/AI.yaml'
+    url: 'https://kelee.one/Tool/Clash/Rule/AI.yaml'
+
+  GameRule:
+    <<: *RuleProviders
+    path: './rules/Game.yaml'
+    url: 'https://kelee.one/Tool/Clash/Rule/Game.yaml'
+
+  Steam:
+    <<: *RuleProviders
+    path: './rules/Steam.yaml'
+    url: 'https://rule.kelee.one/Clash/Steam.yaml'
+
+  Microsoft:
+    <<: *RuleProviders
+    path: './rules/Microsoft.yaml'
+    url: 'https://rule.kelee.one/Clash/Microsoft.yaml'
+
+  Apple:
+    <<: *RuleProviders
+    path: './rules/Apple.yaml'
+    url: 'https://rule.kelee.one/Clash/Apple.yaml'
+
+rules:
+  - RULE-SET, LAN, DIRECT
+  - RULE-SET, Direct, DIRECT
+  - RULE-SET, Proxy, GROUND
+  - RULE-SET, ChinaDownloadCDN, DIRECT
+  - RULE-SET, InternationalDownloadCDN, DIRECT
+  - RULE-SET, AI, AI
+  - RULE-SET, Steam, GROUND
+  - RULE-SET, GameRule, GAME
+  - RULE-SET, Microsoft, Microsoft
+  - RULE-SET, Apple, DIRECT
+  - GEOIP, CN, DIRECT
+  - MATCH, GROUND
