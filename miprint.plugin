@@ -1,2 +1,6 @@
 [Rewrite]
 ^https:\/\/api-miprint\.hannto\.com\/v1\/c\/res\/app\/ad\/\?app_version url reject-dict
+
+[MITM]
+hostname = 
+api-miprint.hannto.com
