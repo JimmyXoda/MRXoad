@@ -1,5 +1,5 @@
 domain-keyword, apple-relay
 domain, guzzoni.apple.com
-domain-suffix, *.smoot.apple.com
+domain-suffix, smoot.apple.com
 domain, cp4.cloudflare.com
 domain, gspe1-ssl.ls.apple.com
