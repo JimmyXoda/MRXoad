@@ -1,9 +1,5 @@
 domain-keyword, apple-relay
-domain, cp2.cloudflare.com
-domain, cp4.cloudflare.com
-domain, apps.mzstatic.com
 domain, guzzoni.apple.com
-domain, gateway.icloud.com.cn
+domain-suffix, *.smoot.apple.com
+domain, cp4.cloudflare.com
 domain, gspe1-ssl.ls.apple.com
-domain, proxy.safebrowsing.apple
-domain-suffix, smoot.apple.com
