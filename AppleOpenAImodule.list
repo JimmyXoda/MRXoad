@@ -1,4 +1,6 @@
-domain-keyword, apple-relay
+domain, apple-relay.apple.com
+domain, apple-relay.fastly-edge.com
+domain, apple-relay.cloudflare.com
 domain, guzzoni.apple.com
 domain-suffix, smoot.apple.com
 domain, cp4.cloudflare.com
